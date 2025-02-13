@@ -1,0 +1,15 @@
+﻿# Visual Studio files
+.vs/
+
+# JetBrains files
+.idea/
+
+# Sensitive publish data
+Properties/PublishProfiles/*.user
+
+# User related publish data
+*.csproj.user
+
+# Build files
+bin/
+obj
