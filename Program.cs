@@ -29,8 +29,12 @@ class MarkdownToJiraConverter
         markdown = Regex.Replace(markdown, "^```sql(.*?)```", "{code:sql}$1{code}", RegexOptions.Multiline | RegexOptions.Singleline);
         markdown = Regex.Replace(markdown, "^```csharp(.*?)```", "{code:c#}$1{code}", RegexOptions.Multiline | RegexOptions.Singleline);
         markdown = Regex.Replace(markdown, "^```json(.*?)```", "{noformat}$1{noformat}", RegexOptions.Multiline | RegexOptions.Singleline);
-        markdown = Regex.Replace(markdown, "^```(.*?)```", "{noformat}$1{noformat}", RegexOptions.Multiline | RegexOptions.Singleline);
+        markdown = Regex.Replace(markdown, "^```[^\n]*(.*?)```", "{noformat}$1{noformat}", RegexOptions.Multiline | RegexOptions.Singleline);
+
+        // Remove second line of table
         markdown = Regex.Replace(markdown, "^\\|( -+ \\|)+\r?\n", "", RegexOptions.Multiline | RegexOptions.ExplicitCapture);
+
+        // Convert || to | in table values
         markdown = Regex.Replace(
             markdown,
             "^(\r?\n)(\\|.*\\|\r?\n)",
